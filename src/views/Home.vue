@@ -1,18 +1,42 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="main">
+      <Search />
+      <SearchText />
+      <Category />
+      <div class="main-content">
+        <CatalogFilter />
+        <Catalog />
+
+      </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Search from '../components/Search.vue'
+import SearchText from '../components/SearchText.vue'
+import Category from '../components/Category.vue'
+import CatalogFilter from '../components/CatalogFilter/CatalogFilter.vue'
+import Catalog from '../components/Catalog/Catalog.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Search,
+    SearchText,
+    Category,
+    CatalogFilter,
+    Catalog
   }
 }
 </script>
+<style lang="scss">
+.main-content{
+  margin-top: 39px;
+}
+@media screen and (min-width: 1280px) {
+  .main-content{
+    display: flex;
+    margin-top: 39px;
+  }
+}
+</style>
