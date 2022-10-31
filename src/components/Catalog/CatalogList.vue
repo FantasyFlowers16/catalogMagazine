@@ -163,15 +163,16 @@ export default {
   &__list{
     display: flex;
     flex-wrap: wrap;
-    gap: 44px;
+    gap: 40px;
     margin-top: 20px;
   }
 }
 .catalog-item{
-  width: calc(33.33% - 30px);
-  transition: padding .3s ease,  box-shadow .3s ease;
+  width: calc(50% - 20px);
+  transition: transform .3s ease,  box-shadow .3s ease, padding .3s ease;
   &:hover{
     padding: 5px;
+    transform: scale(1.1);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   }
   &__no-img{
@@ -201,6 +202,17 @@ export default {
     color: $grayTxt;
     font: 400 14px/16px 'Open Sans',sans-serif;
     margin-left:16px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .catalog{
+    &__list{
+      gap: 44px;
+    }
+  }
+  .catalog-item{
+    width: calc(33.33% - 30px);
   }
 }
 </style>

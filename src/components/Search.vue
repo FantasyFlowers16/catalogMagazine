@@ -1,7 +1,8 @@
 <template>
   <div class="search-block">
     <div class="search-block__input-container">
-      <input type="text" name="text"  class="search-block__input text-input text-input--search" v-model="searchText" />
+      <input  type="text" name="text"  class="search-block__input text-input text-input--search" v-model="searchText" />
+      <div class="search-block__delete" :v-if="!isFulSearch" @click="clearSearch"></div>
     </div>
     <div class="search-block__btn-container">
       <button class="search-block__search btn btn--yellow">Найти</button>
@@ -11,12 +12,21 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 export default {
   setup () {
-    const searchText = ref('')
+    const searchText = ref('Запрос пользователя')
+    const isFulSearch = ref(false)
+    watch(searchText, () => {
+      if (searchText.value) {
+        isFulSearch.value = true
+      } else isFulSearch.value = false
+    })
+    const clearSearch = () => {
+      searchText.value = ''
+    }
     return {
-      searchText
+      searchText, isFulSearch, clearSearch
     }
   }
 }
@@ -30,6 +40,7 @@ export default {
   width: 100%;
   &__input{
     width: 100%;
+    padding-right: 30px;
   }
   &__search{
     width: 145px;
@@ -43,6 +54,20 @@ export default {
     margin-top: 20px;
     width: 100%;
     justify-content: space-between;
+  }
+  &__delete{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-image: url(../assets/svg/cross.svg);
+    right: 12px;
+    opacity: .7;
+    transition: opacity .15s ease;
+    cursor:pointer;
+    top: 14px;
+    &:hover{
+      opacity: 1
+    }
   }
   &__input-container{
     position: relative;

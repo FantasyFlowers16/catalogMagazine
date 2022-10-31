@@ -57,6 +57,7 @@ export default {
   margin-top: 30px;
   position: relative;
   display: flex;
+  gap: 20px 0;
   flex-wrap: wrap;
   &__item{
     width: calc(50% - 20px);
@@ -87,7 +88,6 @@ export default {
 @media screen and (min-width: 1280px) {
   .categiries{
     overflow: auto;
-    flex-wrap: nowrap;
     &::before{
       content: '';
       display: block;
@@ -105,6 +105,9 @@ export default {
       padding: 0 20px;
       border-left: 1px solid $gray;
       margin-bottom: 0;
+      &:hover{
+        z-index: 1000;
+      }
       &:first-child, &:nth-child(5n+1){
         padding-left: 0;
       }

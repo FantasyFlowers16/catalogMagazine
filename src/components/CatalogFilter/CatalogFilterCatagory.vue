@@ -1,16 +1,20 @@
 <template>
   <div class="filter-categoties">
     <div class="filter-categoties__title">Все категории</div>
-    <router-link :to="category.link" class="filter-categoties__link" v-for="category in categories" :key="category.id">
+    <router-link :to="category.link" class="filter-categoties__link" v-for="category in filteredCategory" :key="category.id">
       {{category.name}} ({{category.count}})
     </router-link>
-    <div class="filter-categoties__link">Ещё 10 категорий...</div>
+    <div :class="{_hidden: openedCategory}" class="filter-categoties__link" @click="visibleCategory">Ещё {{countcategory}} категорий...</div>
   </div>
 </template>
 
 <script>
+import { computed, ref } from 'vue'
 export default {
   setup () {
+    const maxCategory = ref(9)
+    const filteredCategory = computed(() => categories.filter((el, ind) => ind < maxCategory.value))
+    const openedCategory = ref(false)
     const categories = [
       {
         name: 'Категория в которой нашли что-то',
@@ -71,9 +75,68 @@ export default {
         id: 10,
         link: '#',
         count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 20,
+        link: '#',
+        count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 30,
+        link: '#',
+        count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 40,
+        link: '#',
+        count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 50,
+        link: '#',
+        count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 60,
+        link: '#',
+        count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 70,
+        link: '#',
+        count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 80,
+        link: '#',
+        count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 90,
+        link: '#',
+        count: 'xx'
+      },
+      {
+        name: 'Категория в которой нашли что-то',
+        id: 100,
+        link: '#',
+        count: 'xx'
       }
     ]
-    return { categories }
+    const countcategory = ref(Number(categories.length) - Number(maxCategory.value) - 1)
+    const visibleCategory = () => {
+      maxCategory.value = 10000
+      openedCategory.value = true
+    }
+    return { categories, maxCategory, filteredCategory, countcategory, openedCategory, visibleCategory }
   }
 }
 </script>
@@ -94,6 +157,9 @@ export default {
     transition: color .15s ease;
     &:hover{
       color:$linkDark
+    }
+    &._hidden{
+      display: none;
     }
   }
 }
